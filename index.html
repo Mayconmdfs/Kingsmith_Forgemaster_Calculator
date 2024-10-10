@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weaponsmith Item Enhance Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        label { display: block; margin: 10px 0 5px; }
+        input { padding: 5px; width: 100%; max-width: 300px; }
+        button { margin: 20px 0; padding: 10px 20px; }
+        .result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Weaponsmith Item Enhance Calculator</h1>
+    <form id="gameStatsForm">
+        <label for="num_trials">Blacksmith number (Ex: 4)</label>
+        <input type="number" id="num_trials" name="num_trials" value="8" required>
+
+        <label for="blacksmith_level">Blacksmiths proficiency (Ex: 35,25,15,5)</label>
+        <input type="text" id="blacksmith_level" name="blacksmith_level" value="35,25,15,5,0,0,0,0" required>
+
+        <label for="difficulty">Item Dificuldade (Ex: 250)</label>
+        <input type="number" id="difficulty" name="difficulty" value="250" required>
+
+        <label for="items_done">Number of Items (Ex: 100)</label>
+        <input type="number" id="items_done" name="items_done" value="100" required>
+
+        <label for="max_item_successes">Max number of enhances (Currently 4 enhances or 5 stars)</label>
+        <input type="number" id="max_item_successes" name="max_item_successes" value="4" required>
+
+        <button type="button" onclick="calculateStats()">Calcular</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function generatePossibilityMatrix(num_trials) {
+            const num_rows = 2 ** num_trials;
+            const matrix = Array.from({ length: num_rows }, () => Array(num_trials).fill(0));
+            
+            for (let row = 0; row < num_rows; row++) {
+                const binaryRep = row.toString(2).padStart(num_trials, '0');
+                for (let col = 0; col < num_trials; col++) {
+                    matrix[row][col] = parseInt(binaryRep[col]);
+                }
+            }
+            return matrix;
+        }
+
+        function calculateProbabilities(matrix, success_probabilities, max_successes = 4) {
+            const probabilities = Array(max_successes + 1).fill(0);
+            
+            matrix.forEach(row => {
+                let num_successes = row.reduce((a, b) => a + b, 0);
+                let probability = row.reduce((prod, value, index) => 
+                    prod * (value ? success_probabilities[index] : (1 - success_probabilities[index])), 1);
+                
+                if (num_successes <= max_successes) {
+                    probabilities[num_successes] += probability;
+                } else {
+                    probabilities[max_successes] += probability;
+                }
+            });
+            
+            return probabilities;
+        }
+
+        function calculateExpectedOutput(probabilities, items_done, max_item_successes) {
+            return probabilities.map((prob, i) => prob * items_done);
+        }
+
+        function arrayAddScalar(array, scalar) {
+            return array.map(a => a + scalar);
+        }
+
+        function arrayDivide(array1, array2) {
+            return array1.map((a, i) => a / array2[i]);
+        }
+
+        function calculateStats() {
+            const num_trials = parseInt(document.getElementById('num_trials').value);
+            const blacksmith_level = document.getElementById('blacksmith_level').value.split(',').map(Number);
+            const difficulty = parseInt(document.getElementById('difficulty').value);
+            const items_done = parseInt(document.getElementById('items_done').value);
+            const max_item_successes = parseInt(document.getElementById('max_item_successes').value);
+
+            const total_chance = arrayAddScalar(blacksmith_level, difficulty);
+            const success_probabilities = arrayDivide(blacksmith_level, total_chance);
+            const probability_matrix = generatePossibilityMatrix(num_trials);
+            const probabilities = calculateProbabilities(probability_matrix, success_probabilities, max_item_successes);
+            const results = calculateExpectedOutput(probabilities, items_done, max_item_successes);
+
+            let resultHtml = "<h3>Result:</h3>";
+            probabilities.forEach((prob, i) => {
+                resultHtml += `<p>${i + 1} Stars: ${(prob * 100).toFixed(2)}%</p>`;
+            });
+            
+            resultHtml += "<h3>Expected Result:</h3>";
+            results.forEach((res, i) => {
+                resultHtml += `<p>${i + 1} Stars: ${res.toFixed(2)}</p>`;
+            });
+
+            const total_successes = results.reduce((acc, res, i) => acc + i * res, 0);
+            resultHtml += `<p>Total enhances expected: ${total_successes.toFixed(2)}</p>`;
+
+            document.getElementById('result').innerHTML = resultHtml;
+        }
+    </script>
+</body>
+</html>
