@@ -58,13 +58,13 @@ function calculateStats() {
     const probabilities = calculateProbabilities(probability_matrix, success_probabilities, max_item_successes);
     const results = calculateExpectedOutput(probabilities, items_done, max_item_successes);
 
-    let resultHtml = "<h3>Resultados:</h3>";
+    let resultHtml = "<h3>Enhancement chances:</h3>";
     probabilities.forEach((prob, i) => {
         const stars = generateStars(i + 1);
         resultHtml += `<p><span class="stars">${stars}</span> ${(prob * 100).toFixed(2)}%</p>`;
     });
     
-    resultHtml += "<h3>Resultado Esperado:</h3>";
+    resultHtml += "<h3>Expected result (★ can vary based on your luck):</h3>";
     results.forEach((res, i) => {
         const stars = generateStars(i + 1);
         resultHtml += `<p><span class="stars">${stars}</span> ${res.toFixed(2)}</p>`;

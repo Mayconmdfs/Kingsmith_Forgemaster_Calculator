@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Estatísticas do Jogo</title>
+    <title>Production output calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Calculadora de Estatísticas do Jogo</h1>
+        <h1Production output calculator</h1>
         <form id="gameStatsForm">
-            <label for="num_trials">Número de Tentativas</label>
+            <label for="num_trials">Black Smith Number</label>
             <input type="number" id="num_trials" name="num_trials" value="8" required>
 
-            <label for="blacksmith_level">Níveis do Ferreiro (separados por vírgula)</label>
-            <input type="text" id="blacksmith_level" name="blacksmith_level" value="35,25,25,25,25,25,25,25" required>
+            <label for="blacksmith_level">BlackSmiths proficiency (comma separated)</label>
+            <input type="text" id="blacksmith_level" name="blacksmith_level" value="35,35,35,25,25,25,25,25" required>
 
-            <label for="difficulty">Dificuldade</label>
+            <label for="difficulty">Difficulty of the item produced</label>
             <input type="number" id="difficulty" name="difficulty" value="250" required>
 
-            <label for="items_done">Itens Finalizados</label>
+            <label for="items_done">Number of items to produce</label>
             <input type="number" id="items_done" name="items_done" value="950" required>
 
-            <label for="max_item_successes">Sucessos Máximos por Item</label>
+            <label for="max_item_successes">Max enchacement (4 = 5 Star Item = Golden item) </label>
             <input type="number" id="max_item_successes" name="max_item_successes" value="4" required>
 
-            <button type="button" onclick="calculateStats()">Calcular</button>
+            <button type="button" onclick="calculateStats()">Calculate</button>
         </form>
 
         <div class="result" id="result"></div>
     </div>
 
     <footer>
-        &copy; 2024 Calculadora de Jogo - Desenvolvido para uso offline
+        &copy; Use my invitation code if you like: 2D6G1AWD
     </footer>
 
     <script src="statsCalculator.js"></script>
