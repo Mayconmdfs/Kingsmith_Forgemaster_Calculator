@@ -6,66 +6,90 @@
 }
 
 body {
-    font-family: 'Orbitron', sans-serif;
-    background-color: #2b2b2b; /* Cinza escuro */
-    color: #fff;
+    font-family: 'Cinzel', serif; /* Medieval-themed font */
+    background-color: #1a1a1a; /* Very dark gray background */
+    color: #fff; /* White text for contrast */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 20px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
 }
 
 /* Container principal */
 .container {
-    background: linear-gradient(135deg, #444 0%, #2b2b2b 100%); /* Preto com cinza escuro */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #5c4033 0%, #8b5e3c 100%); /* Medium to lighter brown gradient */
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow for depth */
     border-radius: 15px;
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
-    border: 2px solid #3498db; /* Azul */
+    border: 2px solid #3e2723; /* Dark brown border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%); /* Hexagonal corners */
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #3498db; /* Azul claro */
-    text-shadow: 0 0 10px rgba(52, 152, 219, 0.7); /* Brilho azul */
+    color: #3e2723; /* Dark brown text */
+    text-shadow: 1px 1px 2px #8b5e3c, -1px -1px 2px #8b5e3c; /* Light brown glow effect */
+    font-size: 2em;
+}
+
+.form-result {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    width: 100%;
 }
 
 label {
     font-weight: bold;
-    color: #3498db; /* Azul claro */
-    text-shadow: 0 0 5px rgba(52, 152, 219, 0.7); /* Brilho azul */
+    color: #3e2723; /* Dark brown text */
+    text-shadow: 1px 1px 2px #8b5e3c, -1px -1px 2px #8b5e3c; /* Light brown glow effect */
+    font-size: 1.1em;
 }
 
 input {
-    padding: 10px;
-    font-size: 16px;
+    padding: 12px;
+    font-size: 1em;
     border-radius: 5px;
-    border: 2px solid #3498db; /* Azul */
-    background-color: #333; /* Preto */
-    color: #fff;
+    border: 2px solid #3e2723; /* Dark brown border */
+    background-color: #d2b48c; /* Light brown background */
+    color: #3e2723; /* Dark brown text */
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus {
-    border-color: #2980b9; /* Azul mais escuro */
-    box-shadow: 0 0 10px #2980b9; /* Brilho azul escuro */
+    border-color: #8b5e3c; /* Lighter brown border on focus */
+    box-shadow: 0 0 10px #8b5e3c; /* Light brown glow on focus */
 }
 
 button {
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background: linear-gradient(135deg, #2980b9 0%, #3498db 100%); /* Azul claro */
+    padding: 12px;
+    font-size: 1em;
+    color: #3e2723; /* Dark brown text */
+    background: linear-gradient(135deg, #8b5e3c 0%, #d2b48c 100%); /* Light brown gradient background */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -75,55 +99,72 @@ button {
 }
 
 button:hover {
-    background-color: #1f618d; /* Azul escuro */
-    box-shadow: 0 0 10px #2980b9; /* Brilho azul */
+    background-color: #8b5e3c; /* Darker brown background on hover */
+    box-shadow: 0 0 10px #8b5e3c; /* Light brown glow on hover */
 }
 
 /* Estilo para o resultado */
 .result {
     margin-top: 20px;
-    padding: 20px; /* Aumentar padding para melhor espaçamento */
-    background-color: rgba(52, 152, 219, 0.1); /* Fundo azul claro transparente */
-    border-left: 5px solid #3498db; /* Azul claro */
+    padding: 20px; /* Increased padding for better spacing */
+    background-color: #d2b48c; /* Light brown transparent background */
+    border-left: 5px solid #3e2723; /* Dark brown border */
     border-radius: 5px;
-    color: #3498db; /* Texto azul claro */
+    color: #3e2723; /* Dark brown text */
+    width: 100%;
 }
 
 .result h3 {
     margin-bottom: 10px;
-    color: #3498db; /* Azul claro */
-    text-shadow: 0 0 5px rgba(52, 152, 219, 0.7); /* Brilho azul */
+    color: #3e2723; /* Dark brown text */
+    text-shadow: 1px 1px 2px #f2aa73, -1px -1px 2px #8b5e3c; /* Light brown glow effect */
 }
 
 .result p {
-    margin: 10px 0; /* Melhorar espaçamento vertical entre as linhas */
-    font-size: 16px; /* Aumentar tamanho da fonte para melhor leitura */
+    margin: 10px 0; /* Improved vertical spacing */
+    font-size: 1em; /* Increased font size for better readability */
     display: flex;
     align-items: center;
 }
 
 .result .stars {
-    color: #f1c40f; /* Cor amarela para as estrelas */
-    margin-right: 10px; /* Espaço entre as estrelas e o texto */
+    color: #f1c40f; /* Yellow color for stars */
+    margin-right: 10px; /* Space between stars and text */
 }
 
 footer {
     text-align: center;
     margin-top: 20px;
     font-size: 12px;
-    color: #3498db; /* Azul claro */
+    color: #3e2723; /* Dark brown text */
 }
 
-/* Efeito de brilho */
-.container, button {
-    animation: glow 1.5s ease-in-out infinite alternate;
+/* Responsividade */
+@media (min-width: 768px) {
+    .form-result {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    form {
+        width: 45%;
+    }
+
+    .result {
+        width: 45%;
+        margin-top: 0;
+    }
 }
 
-@keyframes glow {
-    from {
-        box-shadow: 0 0 5px #3498db, 0 0 10px #2980b9, 0 0 15px #3498db; /* Efeito de brilho azul */
-    }
-    to {
-        box-shadow: 0 0 10px #3498db, 0 0 20px #2980b9, 0 0 25px #3498db; /* Brilho intenso */
-    }
+/* Estilo para os inputs de proficiência */
+.proficiency-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 10px); /* Two inputs per line with some gap */
 }

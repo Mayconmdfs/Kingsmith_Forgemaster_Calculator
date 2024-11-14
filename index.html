@@ -5,40 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Production output calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="generateProficiencyInputs()">
 
-    <div class="container">
-        <h1> Production output calculator</h1>
-        <form id="gameStatsForm">
-            <label for="num_trials">Black Smith Number</label>
-            <input type="number" id="num_trials" name="num_trials" value="8" required>
+    <div class="wrapper">
+        <div class="container">
+            <h1>Production output calculator</h1>
+            <div class="form-result">
+                <form id="gameStatsForm">
+                    <label for="num_trials">Black Smith Number</label>
+                    <input type="number" id="num_trials" name="num_trials" value="8" required onchange="generateProficiencyInputs()">
 
-            <label for="blacksmith_level">BlackSmiths proficiency (comma separated)</label>
-            <input type="text" id="blacksmith_level" name="blacksmith_level" value="35,35,35,25,25,25,25,25" required>
+                    <div id="proficiencyInputs" class="proficiency-inputs"></div>
 
-            <label for="difficulty">Difficulty of the item produced</label>
-            <input type="number" id="difficulty" name="difficulty" value="250" required>
+                    <label for="difficulty">Difficulty of the item produced</label>
+                    <input type="number" id="difficulty" name="difficulty" value="250" required>
 
-            <label for="items_done">Number of items to produce</label>
-            <input type="number" id="items_done" name="items_done" value="950" required>
+                    <label for="items_done">Number of items to produce</label>
+                    <input type="number" id="items_done" name="items_done" value="100" required>
 
-            <label for="max_item_successes">Max enchacement (4 = 5 Star Item = Golden item) </label>
-            <input type="number" id="max_item_successes" name="max_item_successes" value="4" required>
+                    <label for="max_item_successes">Max enhancement (4 = 5 Star Item = Golden item)</label>
+                    <input type="number" id="max_item_successes" name="max_item_successes" value="4" required>
 
-            <button type="button" onclick="calculateStats()">Calculate</button>
-        </form>
+                    <button type="button" onclick="calculateStats()">Calculate</button>
+                </form>
 
-        <div class="result" id="result"></div>
-        <div>
-            <h1> Use my invitation code if you like: 2D6G1AWD </h1>
+                <div class="result" id="result"></div>
+            </div>
+            <div>
+                <h1>Use my invitation code if you like: 2D6G1AWD</h1>
+            </div>
         </div>
+
+        <footer>
+            &copy; 2024 Calculadora de Jogo - Desenvolvido para uso offline
+        </footer>
     </div>
 
-    <footer>
-        &copy; 2024 Calculadora de Jogo - Desenvolvido para uso offlineUse my invitation code if you like: 2D6G1AWD
-    </footer>
-
     <script src="statsCalculator.js"></script>
+    <script>
+        function generateProficiencyInputs() {
+            const numTrials = document.getElementById('num_trials').value;
+            const proficiencyInputsDiv = document.querySelector('.proficiency-inputs');
+            proficiencyInputsDiv.innerHTML = ''; // Clear existing inputs
+
+            for (let i = 0; i < numTrials; i++) {
+                const inputGroup = document.createElement('div');
+                inputGroup.className = 'input-group';
+
+                const label = document.createElement('label');
+                label.setAttribute('for', `blacksmith_level_${i}`);
+                label.textContent = `BlackSmith ${i + 1} proficiency`;
+
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = `blacksmith_level_${i}`;
+                input.name = `blacksmith_level_${i}`;
+                input.value = '15';
+                input.step = '5'; // Set step to 10
+                input.required = true;
+
+                inputGroup.appendChild(label);
+                inputGroup.appendChild(input);
+                proficiencyInputsDiv.appendChild(inputGroup);
+            }
+        }
+
+    </script>
 </body>
 </html>

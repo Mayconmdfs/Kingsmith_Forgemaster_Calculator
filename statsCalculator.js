@@ -46,18 +46,21 @@ function generateStars(starCount) {
 }
 
 function calculateStats() {
-    const num_trials = parseInt(document.getElementById('num_trials').value);
-    const blacksmith_level = document.getElementById('blacksmith_level').value.split(',').map(Number);
+    const numTrials = parseInt(document.getElementById('num_trials').value);
+    const blacksmithLevels = [];
+    for (let i = 0; i < numTrials; i++) {
+        blacksmithLevels.push(parseInt(document.getElementById(`blacksmith_level_${i}`).value));
+    }
     const difficulty = parseInt(document.getElementById('difficulty').value);
-    const items_done = parseInt(document.getElementById('items_done').value);
-    const max_item_successes = parseInt(document.getElementById('max_item_successes').value);
+    const itemsDone = parseInt(document.getElementById('items_done').value);
+    const maxItemSuccesses = parseInt(document.getElementById('max_item_successes').value);
 
-    const total_chance = arrayAddScalar(blacksmith_level, difficulty);
-    const success_probabilities = arrayDivide(blacksmith_level, total_chance);
-    const probability_matrix = generatePossibilityMatrix(num_trials);
-    const probabilities = calculateProbabilities(probability_matrix, success_probabilities, max_item_successes);
-    const results = calculateExpectedOutput(probabilities, items_done, max_item_successes);
-
+    const total_chance = arrayAddScalar(blacksmithLevels, difficulty);
+    const success_probabilities = arrayDivide(blacksmithLevels, total_chance);
+    const probability_matrix = generatePossibilityMatrix(numTrials);
+    const probabilities = calculateProbabilities(probability_matrix, success_probabilities, maxItemSuccesses);
+    const results = calculateExpectedOutput(probabilities, itemsDone, maxItemSuccesses);
+    
     let resultHtml = "<h3>Enhancement chances:</h3>";
     probabilities.forEach((prob, i) => {
         const stars = generateStars(i + 1);
@@ -72,6 +75,7 @@ function calculateStats() {
 
     const total_successes = results.reduce((acc, res, i) => acc + i * res, 0);
     resultHtml += `<p>Total de Melhorias Esperadas: ${total_successes.toFixed(2)}</p>`;
-
+    
     document.getElementById('result').innerHTML = resultHtml;
+    
 }
