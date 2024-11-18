@@ -22,12 +22,6 @@
                     <label for="difficulty">Difficulty of the item produced</label>
                     <input type="number" id="difficulty" name="difficulty" value="250" required>
 
-                    <label for="items_done">Number of items to produce</label>
-                    <input type="number" id="items_done" name="items_done" value="100" required>
-
-                    <label for="max_item_successes">Max enhancement (4 = 5 Star Item = Golden item)</label>
-                    <input type="number" id="max_item_successes" name="max_item_successes" value="4" required>
-
                     <button type="button" onclick="calculateStats()">Calculate</button>
                 </form>
 
@@ -56,7 +50,7 @@
 
                 const label = document.createElement('label');
                 label.setAttribute('for', `blacksmith_level_${i}`);
-                label.textContent = `BlackSmith ${i + 1} proficiency`;
+                label.textContent = `BlackSmith ${i + 1}`;
 
                 const input = document.createElement('input');
                 input.type = 'number';

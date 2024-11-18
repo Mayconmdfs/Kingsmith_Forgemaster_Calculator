@@ -28,7 +28,7 @@ body {
 /* Container principal */
 .container {
     background: linear-gradient(135deg, #5c4033 0%, #8b5e3c 100%); /* Medium to lighter brown gradient */
-    padding: 30px;
+    padding: 20px; /* Reduced padding */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Shadow for depth */
     border-radius: 15px;
     max-width: 800px;
@@ -42,40 +42,40 @@ body {
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #3e2723; /* Dark brown text */
+    margin-bottom: 10px; /* Reduced margin */
+    color: #ffffff; /* White text */
     text-shadow: 1px 1px 2px #8b5e3c, -1px -1px 2px #8b5e3c; /* Light brown glow effect */
-    font-size: 2em;
+    font-size: 1.5em; /* Reduced font size */
 }
 
 .form-result {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px; /* Reduced gap */
     width: 100%;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px; /* Reduced gap */
     width: 100%;
 }
 
 label {
     font-weight: bold;
-    color: #3e2723; /* Dark brown text */
+    color: #ffffff; /* White text */
     text-shadow: 1px 1px 2px #8b5e3c, -1px -1px 2px #8b5e3c; /* Light brown glow effect */
-    font-size: 1.1em;
+    font-size: 1em; /* Reduced font size */
 }
 
 input {
-    padding: 12px;
-    font-size: 1em;
+    padding: 8px; /* Reduced padding */
+    font-size: 0.9em; /* Reduced font size */
     border-radius: 5px;
     border: 2px solid #3e2723; /* Dark brown border */
-    background-color: #d2b48c; /* Light brown background */
-    color: #3e2723; /* Dark brown text */
+    background-color: #f5deb3; /* Light brown background */
+    color: #000000; /* Black text */
     outline: none;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -86,9 +86,9 @@ input:focus {
 }
 
 button {
-    padding: 12px;
-    font-size: 1em;
-    color: #3e2723; /* Dark brown text */
+    padding: 10px; /* Reduced padding */
+    font-size: 0.9em; /* Reduced font size */
+    color: #ffffff; /* White text */
     background: linear-gradient(135deg, #8b5e3c 0%, #d2b48c 100%); /* Light brown gradient background */
     border: none;
     border-radius: 5px;
@@ -105,37 +105,37 @@ button:hover {
 
 /* Estilo para o resultado */
 .result {
-    margin-top: 20px;
-    padding: 20px; /* Increased padding for better spacing */
-    background-color: #d2b48c; /* Light brown transparent background */
+    margin-top: 10px; /* Reduced margin */
+    padding: 15px; /* Reduced padding */
+    background-color: #f5deb3; /* Light brown transparent background */
     border-left: 5px solid #3e2723; /* Dark brown border */
     border-radius: 5px;
-    color: #3e2723; /* Dark brown text */
+    color: #000000; /* Black text */
     width: 100%;
 }
 
 .result h3 {
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* Reduced margin */
     color: #3e2723; /* Dark brown text */
     text-shadow: 1px 1px 2px #f2aa73, -1px -1px 2px #8b5e3c; /* Light brown glow effect */
 }
 
 .result p {
-    margin: 10px 0; /* Improved vertical spacing */
-    font-size: 1em; /* Increased font size for better readability */
+    margin: 5px 0; /* Reduced margin */
+    font-size: 0.9em; /* Reduced font size */
     display: flex;
     align-items: center;
 }
 
 .result .stars {
     color: #f1c40f; /* Yellow color for stars */
-    margin-right: 10px; /* Space between stars and text */
+    margin-right: 5px; /* Reduced margin */
 }
 
 footer {
     text-align: center;
-    margin-top: 20px;
-    font-size: 12px;
+    margin-top: 10px; /* Reduced margin */
+    font-size: 10px; /* Reduced font size */
     color: #3e2723; /* Dark brown text */
 }
 
@@ -160,11 +160,11 @@ footer {
 .proficiency-inputs {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10px; /* Reduced gap */
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
-    width: calc(50% - 10px); /* Two inputs per line with some gap */
+    width: calc(50% - 5px); /* Two inputs per line with some gap */
 }

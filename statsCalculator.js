@@ -52,14 +52,11 @@ function calculateStats() {
         blacksmithLevels.push(parseInt(document.getElementById(`blacksmith_level_${i}`).value));
     }
     const difficulty = parseInt(document.getElementById('difficulty').value);
-    const itemsDone = parseInt(document.getElementById('items_done').value);
-    const maxItemSuccesses = parseInt(document.getElementById('max_item_successes').value);
-
+    const maxItemSuccesses = 4; // The current max number of successes is 4
     const total_chance = arrayAddScalar(blacksmithLevels, difficulty);
     const success_probabilities = arrayDivide(blacksmithLevels, total_chance);
     const probability_matrix = generatePossibilityMatrix(numTrials);
     const probabilities = calculateProbabilities(probability_matrix, success_probabilities, maxItemSuccesses);
-    const results = calculateExpectedOutput(probabilities, itemsDone, maxItemSuccesses);
     
     let resultHtml = "<h3>Enhancement chances:</h3>";
     probabilities.forEach((prob, i) => {
@@ -67,15 +64,12 @@ function calculateStats() {
         resultHtml += `<p><span class="stars">${stars}</span> ${(prob * 100).toFixed(2)}%</p>`;
     });
     
-    resultHtml += "<h3>Expected result (★ can vary based on your luck):</h3>";
-    results.forEach((res, i) => {
+    resultHtml += "<h3>Expected number of items needed for each enhancement level:</h3>";
+    probabilities.forEach((prob, i) => {
         const stars = generateStars(i + 1);
-        resultHtml += `<p><span class="stars">${stars}</span> ${res.toFixed(2)}</p>`;
+        const expectedItems = prob > 0 ? (1 / prob).toFixed(2) : "N/A";
+        resultHtml += `<p><span class="stars">${stars}</span> ${expectedItems}</p>`;
     });
 
-    const total_successes = results.reduce((acc, res, i) => acc + i * res, 0);
-    resultHtml += `<p>Total de Melhorias Esperadas: ${total_successes.toFixed(2)}</p>`;
-    
     document.getElementById('result').innerHTML = resultHtml;
-    
 }
