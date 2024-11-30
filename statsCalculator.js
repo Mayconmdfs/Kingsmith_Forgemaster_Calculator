@@ -72,7 +72,7 @@ function calculateStats() {
     });
 
     // Calcular a quantidade total esperada de aprimoramentos por 100 itens produzidos
-    const totalEnhancementsPer100Items = probabilities.reduce((sum, prob, i) => sum + (100 * prob * (i + 1)), 0);
+    const totalEnhancementsPer100Items = probabilities.reduce((sum, prob, i) => sum + (100 * prob * (i)), 0);
     resultHtml += `<h3>Enhancements per 100 items:</h3>`;
     resultHtml += `<p>${totalEnhancementsPer100Items.toFixed(2)}</p>`;
 
