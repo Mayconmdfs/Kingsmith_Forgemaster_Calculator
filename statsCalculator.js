@@ -61,15 +61,20 @@ function calculateStats() {
     let resultHtml = "<h3>Enhancement chances:</h3>";
     probabilities.forEach((prob, i) => {
         const stars = generateStars(i + 1);
-        resultHtml += `<p><span class="stars">${stars}</span> ${(prob * 100).toFixed(2)}%</p>`;
+        resultHtml += `<p>${stars}: ${(prob * 100).toFixed(2)}%</p>`;
     });
     
-    resultHtml += "<h3>Expected number of items needed for each enhancement level:</h3>";
+    resultHtml += "<h3>Average Items for rarity:</h3>";
     probabilities.forEach((prob, i) => {
         const stars = generateStars(i + 1);
         const expectedItems = prob > 0 ? (1 / prob).toFixed(2) : "N/A";
-        resultHtml += `<p><span class="stars">${stars}</span> ${expectedItems}</p>`;
+        resultHtml += `<p>${stars}: ${expectedItems}</p>`;
     });
+
+    // Calcular a quantidade total esperada de aprimoramentos por 100 itens produzidos
+    const totalEnhancementsPer100Items = probabilities.reduce((sum, prob, i) => sum + (100 * prob * (i + 1)), 0);
+    resultHtml += `<h3>Enhancements per 100 items:</h3>`;
+    resultHtml += `<p>${totalEnhancementsPer100Items.toFixed(2)}</p>`;
 
     document.getElementById('result').innerHTML = resultHtml;
 }

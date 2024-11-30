@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Production output calculator</title>
+    <title>Calculadora de Produção</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -11,29 +11,31 @@
 
     <div class="wrapper">
         <div class="container">
-            <h1>Production output calculator</h1>
+            <h1>Production Calculator</h1>
             <div class="form-result">
                 <form id="gameStatsForm">
-                    <label for="num_trials">Black Smith Number</label>
+                    <label for="num_trials">Blacksmith ammount</label>
                     <input type="number" id="num_trials" name="num_trials" value="8" required onchange="generateProficiencyInputs()">
 
                     <div id="proficiencyInputs" class="proficiency-inputs"></div>
 
-                    <label for="difficulty">Difficulty of the item produced</label>
+                    <label for="difficulty">Item Difficulty</label>
                     <input type="number" id="difficulty" name="difficulty" value="250" required>
 
-                    <button type="button" onclick="calculateStats()">Calculate</button>
+                    <button type="button" onclick="calculateStats()">Calcular</button>
                 </form>
 
                 <div class="result" id="result"></div>
             </div>
             <div>
-                <h1>Helped you? Use my invitation code: 2D6G1AWD</h1>
+                <h1>Liked  Use my code: 2D6G1AWD</h1>
             </div>
         </div>
 
         <footer>
-            &copy; 2024 Calculadora de Jogo - Desenvolvido para uso offline
+            &copy; 2024 Game Calculator - Developed for offline use
+            <br>
+            <a href="https://mayconmdfs.github.io/Kingsmith_Forgemaster_Calculator/" download>Download for offline use</a>
         </footer>
     </div>
 
@@ -44,20 +46,24 @@
             const proficiencyInputsDiv = document.querySelector('.proficiency-inputs');
             proficiencyInputsDiv.innerHTML = ''; // Clear existing inputs
 
+            const title = document.createElement('h3');
+            title.textContent = 'Blacksmith Proficiency';
+            proficiencyInputsDiv.appendChild(title);
+
             for (let i = 0; i < numTrials; i++) {
                 const inputGroup = document.createElement('div');
                 inputGroup.className = 'input-group';
 
                 const label = document.createElement('label');
                 label.setAttribute('for', `blacksmith_level_${i}`);
-                label.textContent = `BlackSmith ${i + 1}`;
+                label.textContent = `Nº ${i + 1}`;
 
                 const input = document.createElement('input');
                 input.type = 'number';
                 input.id = `blacksmith_level_${i}`;
                 input.name = `blacksmith_level_${i}`;
                 input.value = '15';
-                input.step = '5'; // Set step to 10
+                input.step = '5';
                 input.required = true;
 
                 inputGroup.appendChild(label);
@@ -65,7 +71,6 @@
                 proficiencyInputsDiv.appendChild(inputGroup);
             }
         }
-
     </script>
 </body>
 </html>
